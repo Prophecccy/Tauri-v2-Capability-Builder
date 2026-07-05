@@ -1,0 +1,115 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Tauri v2 Capability Builder | Generate Custom Permissions",
+  description = "A highly polished visual configuration utility to build, validate, and preview security capability JSON or TOML configurations for Tauri v2.",
+  image = "/og-image.png",
+} = Astro.props;
+
+// Enforce title length checks (50-60 characters) with primary keyword at front
+const optimizedTitle = title.length > 60 ? title.substring(0, 57) + "..." : title;
+
+// Enforce description length check (150-160 characters)
+const optimizedDescription = description.length > 160 
+  ? description.substring(0, 157) + "..." 
+  : description;
+
+// Programmatically compute absolute canonical URL on every route
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://tauri-capability-builder.prophecccy.xyz').href;
+
+// Structured Data (JSON-LD)
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Tauri v2 Capability Builder",
+  "url": "https://tauri-capability-builder.prophecccy.xyz"
+};
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Tauri v2 Capability Builder",
+  "operatingSystem": "Windows, MacOS, Linux",
+  "applicationCategory": "DeveloperApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Configure, validate, and preview security capability configurations for Tauri v2 applications."
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Tauri v2 capability configuration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Tauri v2, capabilities define what permissions are granted to individual window groups, targeting specific platforms and security scopes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do capability files live in a Tauri project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They are typically defined in JSON or TOML files within the src-tauri/capabilities/ directory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do scoped permissions work in Tauri v2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Certain plugins (like filesystem or shell) require a defined scope list (e.g. allowed paths or execute targets) to limit system exposure and prevent vulnerabilities."
+      }
+    }
+  ]
+};
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Primary Meta Tags -->
+<title>{optimizedTitle}</title>
+<meta name="title" content={optimizedTitle} />
+<meta name="description" content={optimizedDescription} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={optimizedTitle} />
+<meta property="og:description" content={optimizedDescription} />
+<meta property="og:image" content={new URL(image, canonicalURL)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={optimizedTitle} />
+<meta property="twitter:description" content={optimizedDescription} />
+<meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Structured Data Schemas -->
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

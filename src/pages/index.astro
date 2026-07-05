@@ -1,0 +1,12 @@
+---
+import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+import TauriCapabilityBuilder from '../components/TauriCapabilityBuilder.tsx';
+---
+
+<Layout
+	title="Tauri v2 Capability Builder | Generate Custom Permissions"
+	description="A highly polished visual configuration utility to build, validate, and preview security capability JSON or TOML configurations for Tauri v2."
+>
+	<TauriCapabilityBuilder client:load />
+</Layout>
