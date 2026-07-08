@@ -1261,6 +1261,33 @@ export default function TauriCapabilityBuilder() {
               )}
             </div>
           </div>
+
+          {/* Card 6: Cite this Utility Card */}
+          <div className="bg-zinc-900/50 border border-zinc-800/80 backdrop-blur rounded-xl p-5 flex flex-col gap-3">
+            <div className="flex items-center gap-2 text-zinc-200 font-semibold text-sm border-b border-zinc-850 pb-2.5">
+              <ExternalLink size={15} className="text-indigo-400" />
+              <h3>Using this configuration? Cite us!</h3>
+            </div>
+            <p className="text-zinc-400 text-xs leading-normal">
+              Copy this Markdown citation link to reference the Tauri v2 Capability Builder in your GitHub README or technical blog posts:
+            </p>
+            <div className="flex items-center gap-2 bg-zinc-950 border border-zinc-850 p-2.5 rounded-lg font-mono text-xs text-zinc-300 overflow-hidden relative">
+              <span className="truncate flex-1 select-all">
+                [Tauri v2 Capability Builder](https://tauri-capability-builder.prophecccy.xyz)
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText('[Tauri v2 Capability Builder](https://tauri-capability-builder.prophecccy.xyz)');
+                  showToast('Citation copied to clipboard!');
+                }}
+                className="bg-indigo-600 hover:bg-indigo-500 text-white p-1.5 rounded transition shrink-0 cursor-pointer"
+                title="Copy Citation Link"
+              >
+                <Copy size={13} />
+              </button>
+            </div>
+          </div>
         </section>
 
       </main>

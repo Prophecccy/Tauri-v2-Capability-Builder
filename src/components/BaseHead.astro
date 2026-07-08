@@ -44,6 +44,23 @@ const softwareSchema = {
   "description": "Configure, validate, and preview security capability configurations for Tauri v2 applications."
 };
 
+const webAppSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://tauri-capability-builder.prophecccy.xyz/#website",
+  "name": "Tauri v2 Capability Builder",
+  "url": "https://tauri-capability-builder.prophecccy.xyz",
+  "description": "Interactive GUI utility to visually design, validate, and generate JSON or TOML security permission capability configuration files for Tauri v2 application frameworks.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "author": {
+    "@type": "Organization",
+    "name": "Tauri v2 Security Utilities"
+  },
+  "keywords": "Tauri v2 permissions, Tauri capabilities generator, default.json creator, Tauri v2 ACL configuration, Tauri desktop security"
+};
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -114,4 +131,5 @@ const faqSchema = {
 <!-- Structured Data Schemas -->
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

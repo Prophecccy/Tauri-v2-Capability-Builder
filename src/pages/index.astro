@@ -9,4 +9,48 @@ import TauriCapabilityBuilder from '../components/TauriCapabilityBuilder.tsx';
 	description="A highly polished visual configuration utility to build, validate, and preview security capability JSON or TOML configurations for Tauri v2."
 >
 	<TauriCapabilityBuilder client:load />
+
+	<section class="max-w-7xl mx-auto px-6 py-16 border-t border-zinc-800/80 mt-12">
+		<h2 class="text-3xl font-bold text-white mb-8">Tauri v2 ACL & Capability Troubleshooting</h2>
+		
+		<div class="space-y-12">
+			<!-- Question 1 -->
+			<div class="space-y-3">
+				<h3 class="text-xl font-semibold text-indigo-400">How do you fix Tauri v2 filesystem permission denied errors?</h3>
+				<p class="text-zinc-300 text-sm leading-relaxed max-w-4xl">
+					To fix Tauri v2 filesystem permission denied errors, you must explicitly register the <code>fs:allow-read</code> or <code>fs:allow-write</code> permission inside your capability file at <code>src-tauri/capabilities/default.json</code> and define a precise path scope under the scope property to allow access to targeted directories like <code>$APP_DATA/**/*</code>.
+				</p>
+				<pre class="bg-zinc-950 p-4 rounded-lg text-xs text-emerald-400 font-mono border border-zinc-800 overflow-x-auto">&#123;
+  "permissions": ["fs:allow-read"],
+  "scope": &#123;
+    "allow": [&#123; "path": "$APP_DATA/**/*" &#125;]
+  &#125;
+&#125;</pre>
+			</div>
+
+			<!-- Question 2 -->
+			<div class="space-y-3">
+				<h3 class="text-xl font-semibold text-indigo-400">How do you configure dynamic scopes for the Tauri v2 shell plugin?</h3>
+				<p class="text-zinc-300 text-sm leading-relaxed max-w-4xl">
+					To authorize external command or sidecar execution in Tauri v2, you must assign the <code>shell:allow-execute</code> permission inside <code>src-tauri/capabilities/default.json</code>. You must then map an authorized array containing target binary paths, arguments configurations, and sidecar flags straight to the capability’s local permission scope definitions.
+				</p>
+				<pre class="bg-zinc-950 p-4 rounded-lg text-xs text-emerald-400 font-mono border border-zinc-800 overflow-x-auto">&#123;
+  "permissions": [
+    &#123;
+      "identifier": "shell:allow-execute",
+      "allow": [&#123; "name": "binaries/my-sidecar", "sidecar": true, "args": true &#125;]
+    &#125;
+  ]
+&#125;</pre>
+			</div>
+
+			<!-- Question 3 -->
+			<div class="space-y-3">
+				<h3 class="text-xl font-semibold text-indigo-400">What is the difference between Tauri v1 allowlist and Tauri v2 capabilities?</h3>
+				<p class="text-zinc-300 text-sm leading-relaxed max-w-4xl">
+					Tauri v1 used global allowlist toggles directly in <code>tauri.conf.json</code>. Tauri v2 replaces this model with decentralized, file-based Capabilities inside the <code>src-tauri/capabilities/</code> folder, utilizing an Access Control List (ACL) that maps permissions and scope restrictions directly to specific target windows and platforms.
+				</p>
+			</div>
+		</div>
+	</section>
 </Layout>
